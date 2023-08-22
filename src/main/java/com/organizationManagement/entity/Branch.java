@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Branch {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "branch_generator")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "branch_generator")
 	@SequenceGenerator(name = "branch_generator", sequenceName = "branch_generator", allocationSize = 1)
 	private int branchId;
 	@Column(nullable = false)
@@ -31,10 +31,9 @@ public class Branch {
 	@Column(nullable = false)
 	@NotBlank(message = "branch details should not be blank")
 	private String branchDetails;
-	@ManyToOne(targetEntity =Organization.class,cascade = CascadeType.ALL)
-	@JoinColumns({
-		@JoinColumn(name = "organization_id", referencedColumnName = "organizationId"),
-	    @JoinColumn(name = "organization_name", referencedColumnName = "organizationName")})
+	@ManyToOne(targetEntity = Organization.class, cascade = CascadeType.ALL)
+	@JoinColumns({ @JoinColumn(name = "organization_id", referencedColumnName = "organizationId"),
+			@JoinColumn(name = "organization_name", referencedColumnName = "organizationName") })
 	private Organization organization;
 	@Version
 	private long version;

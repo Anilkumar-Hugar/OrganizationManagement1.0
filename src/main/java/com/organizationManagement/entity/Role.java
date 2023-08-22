@@ -21,11 +21,12 @@ public class Role implements GrantedAuthority {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 	private String roles;
+
 	@Override
 	public String getAuthority() {
 
 		return roles;
-		
+
 	}
 
 }

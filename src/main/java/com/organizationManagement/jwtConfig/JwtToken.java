@@ -21,6 +21,7 @@ public class JwtToken {
 		UserDetails details = (UserDetails) authentication.getPrincipal();
 
 		return Jwts.builder().setSubject(details.getUsername()).setIssuedAt(new Date())
+				.claim("userDetails", details)
 				.setExpiration(new Date(System.currentTimeMillis() + expDate))
 				.signWith(SignatureAlgorithm.HS512, key.getBytes()).compact();
 	}

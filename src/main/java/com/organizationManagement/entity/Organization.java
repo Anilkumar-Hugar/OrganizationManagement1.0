@@ -1,6 +1,5 @@
 package com.organizationManagement.entity;
 
-
 import org.springframework.lang.NonNull;
 
 import jakarta.persistence.EmbeddedId;
@@ -29,5 +28,4 @@ public class Organization {
 	private String OrganizationDetails;
 	@Version
 	private long version;
-	
 }

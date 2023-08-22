@@ -26,10 +26,12 @@ public class SecurityConfigForJwt {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
-		security.csrf().disable()
-				.authorizeHttpRequests(request -> request.requestMatchers("/authenticate/login", "/authenticate/signin")
+
+		security.csrf(csrf -> csrf.disable())
+		.authorizeHttpRequests(request -> request
+						.requestMatchers("/authenticate/login", "/authenticate/create")
 						.permitAll().anyRequest().authenticated())
-				.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class).formLogin();
+				.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
 		return security.build();
 	}
 
@@ -44,5 +46,6 @@ public class SecurityConfigForJwt {
 		managerBuilder.userDetailsService(service).passwordEncoder(passwordEncoder());
 		return managerBuilder.build();
 	}
+
 }
 
